@@ -39,7 +39,7 @@ Claude — for code development and debugging
 ## Files shared
 
 - README (this file)
-- `REPORT.pdf` / `REPORT.html` — the full project report: model, all 9 tasks, plots, tables, final recommendation
+- `REPORT.pdf` / `REPORT.docx` / `REPORT.html` — the full project report (Word + PDF): model, all 9 tasks, plots, tables, final recommendation
 - `sim.py` — Task 1 baseline simulator (standalone, matches the report's Task 1 numbers)
 - `core.py` — shared physics used by every task script, so the model is identical everywhere
 - `task2_animation.py` ... `task8_innovation.py` — one script per task, each runs standalone and regenerates its own plot(s)
@@ -59,4 +59,5 @@ cd atomic_toy_model
 ./venv/bin/python sim.py                     # Task 1
 ./venv/bin/python task2_animation.py         # ... through task8_innovation.py
 ./venv/bin/python build_report.py && soffice --headless --convert-to pdf REPORT.html
+./venv/bin/python build_docx_report.py   # REPORT.docx
 ```
