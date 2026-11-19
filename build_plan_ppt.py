@@ -153,8 +153,7 @@ for item in ["Flowchart + mind map (project plan)",
              "Source code + test code + visualization code",
              "Animation / movies produced",
              "Report: Word/LaTeX + PDF with plots and results",
-             "5 video files, one per member",
-             "Prompts & recorded AI sessions"]:
+             "5 video files, one per member"]:
     para(tf, "•  " + item, size=16, color=INK, before=14, line=1.3)
 
 prs.save("/Users/ansh/atomic_toy_model/Atomic-Toy-Model-Project-Plan.pptx")

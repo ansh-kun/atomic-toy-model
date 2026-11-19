@@ -1,5 +1,9 @@
 # Atomic Toy Model — Project Submission
 
+A 2D toy model of atoms: 16 particles in a reflecting box, joined by short-range spring-like forces and advanced in time with the velocity-Verlet integrator. The project builds this baseline simulator, then studies how its energy, timestep, precision, speed (Python vs C) and memory behave. Everything is written up in [REPORT.pdf](REPORT.pdf).
+
+![Particle snapshots from the baseline simulation](task2_snapshots.png)
+
 Fundamentals of Scientific Computing: Computational Thinking Project
 Instructors: Prof. Anuj Goyal and Prof. Saswata Bhattacharyya
 Group 8
@@ -14,13 +18,9 @@ Group 8
 | Sajal Bajaj | MS26BTECH11029 |
 | Boyanapelli Abhiram Rao | CO26BTECH11004 |
 
-## Sequence of videos
+## Presentation video
 
-- Video-1 Ansh.mp4
-- Video-2 Deepak.mp4
-- Video-3 Purushottam.mp4
-- Video-4 Sajal.mp4
-- Video-5 Abhiram.mp4
+Status: complete (recorded by all five members). [Watch the videos on Google Drive](https://drive.google.com/drive/folders/1sWaezrVleNV6dEIxUMDgimZArnhEIa13?usp=drive_link).
 
 ## Roles and responsibilities
 
@@ -32,8 +32,6 @@ Group 8
 
 ## Acknowledgment of AI usage
 
-Which AI tools have been used and for what purpose
-
 Claude — for code development and debugging
 
 ## Files shared
@@ -44,20 +42,47 @@ Claude — for code development and debugging
 - `core.py` — shared physics used by every task script, so the model is identical everywhere
 - `task2_animation.py` ... `task8_innovation.py` — one script per task, each runs standalone and regenerates its own plot(s)
 - `task9_final_recommendation.md` — Task 9 writeup
-- `pair_forces.c` / `libpairforces.dylib` — the C implementation used in Task 6 (recompile with `cc -O2 -shared -fPIC -o libpairforces.dylib pair_forces.c` if needed)
+- `pair_forces.c` / `libpairforces.dylib` — the C implementation used in Task 6 (see the macOS build step below)
 - `mindmap.png`, `flowchart.png` — project plan visuals
 - `Atomic-Toy-Model-Project-Plan.pptx/.pdf` — project plan slides
 - `concepts.md`, `sim.md` — supporting notes
-- Video files — not yet recorded
-- Prompts and recorded AI sessions — not yet compiled
 
-### How to run
+## Quickstart
+
+Requires Python 3 and macOS (or Linux for everything except the prebuilt `.dylib`).
 
 ```bash
-cd atomic_toy_model
-./venv/bin/pip install -r requirements.txt   # numpy, matplotlib, pillow
-./venv/bin/python sim.py                     # Task 1
-./venv/bin/python task2_animation.py         # ... through task8_innovation.py
-./venv/bin/python build_report.py && soffice --headless --convert-to pdf REPORT.html
-./venv/bin/python build_docx_report.py   # REPORT.docx
+git clone https://github.com/ansh-kun/atomic-toy-model.git
+cd atomic-toy-model
+python3 -m venv venv
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r requirements.txt   # numpy, matplotlib, pillow, python-docx
+python sim.py                     # Task 1 baseline
 ```
+
+`sim.py` prints the energy drift and the correctness checks (symmetric distances, no self-neighbours, particles inside the box, net force ~ 0).
+
+Other tasks (each regenerates its own plots):
+
+```bash
+python task2_animation.py         # ... through task8_innovation.py
+```
+
+### Task 6: build the C benchmark (macOS)
+
+`task6_efficiency.py` loads `libpairforces.dylib` from the repo folder. Rebuild it from source with the Xcode command line tools (`xcode-select --install` if `cc` is missing):
+
+```bash
+cc -O2 -shared -fPIC -o libpairforces.dylib pair_forces.c
+python task6_efficiency.py
+```
+
+### Rebuild the report
+
+```bash
+python build_report.py            # REPORT.html
+python build_docx_report.py       # REPORT.docx (needs python-docx)
+soffice --headless --convert-to pdf REPORT.html   # REPORT.pdf
+```
+
+The PDF step needs LibreOffice (`brew install --cask libreoffice`) with `soffice` on your PATH.
