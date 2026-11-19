@@ -156,5 +156,6 @@ for item in ["Flowchart + mind map (project plan)",
              "5 video files, one per member"]:
     para(tf, "•  " + item, size=16, color=INK, before=14, line=1.3)
 
-prs.save("/Users/ansh/atomic_toy_model/Atomic-Toy-Model-Project-Plan.pptx")
+import pathlib
+prs.save(str(pathlib.Path(__file__).resolve().parent / "Atomic-Toy-Model-Project-Plan.pptx"))
 print("saved")

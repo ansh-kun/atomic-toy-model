@@ -54,13 +54,15 @@ everyone inside the box? True
 total force norm (~0 expected): 5.19e-16
 ```
 
-## What's missing (rest of the project)
+## Project status
 
-Task 1 is done. Not done yet: animation (Task 2), timestep/energy sweep (Task 3), dissipation + relaxation (Task 4), float32 vs float64 (Task 5), timing/scaling incl. C implementation (Task 6), memory/scalability (Task 7), innovation (Task 8), final recommendation (Task 9), report, video.
+All tasks are done: Task 1 (this file), Tasks 2–8 (`task2_animation.py` … `task8_innovation.py`), the Task 9 recommendation (`task9_final_recommendation.md`), the report (`REPORT.pdf`) and the presentation video.
 
 ## How to run
 
 ```bash
-cd atomic_toy_model
-./venv/bin/python sim.py
+cd atomic-toy-model
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python sim.py
 ```

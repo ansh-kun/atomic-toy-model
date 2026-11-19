@@ -49,12 +49,12 @@ Claude — for code development and debugging
 
 ## Quickstart
 
-Requires Python 3 and macOS (or Linux for everything except the prebuilt `.dylib`).
+Requires Python 3.12 or newer (the pinned NumPy needs it). macOS is needed for the prebuilt `.dylib`; everything else also runs on Linux.
 
 ```bash
 git clone https://github.com/ansh-kun/atomic-toy-model.git
 cd atomic-toy-model
-python3 -m venv venv
+python3 -m venv venv           # check `python3 --version` is 3.12 or newer
 source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt   # numpy, matplotlib, pillow, python-docx
 python sim.py                     # Task 1 baseline
@@ -86,3 +86,7 @@ soffice --headless --convert-to pdf REPORT.html   # REPORT.pdf
 ```
 
 The PDF step needs LibreOffice (`brew install --cask libreoffice`) with `soffice` on your PATH.
+
+### Optional: regenerate the plan slides, flowchart and mind map
+
+`build_plan_ppt.py` needs `python-pptx` (`pip install python-pptx`). It is not in `requirements.txt` because the main tasks don't use it. The flowchart and mind map scripts only need the base requirements.

@@ -64,5 +64,5 @@ ax.text(cx, 0.2, "Atomic Toy Model — one simulation step", ha="center", fontsi
         style="italic", family="fantasy")
 
 plt.tight_layout()
-plt.savefig("/Users/ansh/atomic_toy_model/flowchart.png", dpi=150, facecolor="white")
+plt.savefig(__import__("pathlib").Path(__file__).resolve().parent / "flowchart.png", dpi=150, facecolor="white")
 print("saved")

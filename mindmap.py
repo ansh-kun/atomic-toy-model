@@ -48,5 +48,5 @@ ax.text(7, 0.05, "SciComp project · particles in a box", ha="center", fontsize=
         style="italic", family="fantasy")
 
 plt.tight_layout()
-plt.savefig("/Users/ansh/atomic_toy_model/mindmap.png", dpi=150, facecolor="white")
+plt.savefig(__import__("pathlib").Path(__file__).resolve().parent / "mindmap.png", dpi=150, facecolor="white")
 print("saved")
